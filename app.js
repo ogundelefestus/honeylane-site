@@ -10,6 +10,7 @@ var passport = require('passport');
 var keys = require('./keys.js');
 
 var indexRouter = require('./routes/index');
+var adminRouter = require('./routes/admin');
 var usersRouter = require('./routes/users');
 
 var app = express();
@@ -36,6 +37,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/admin', adminRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
