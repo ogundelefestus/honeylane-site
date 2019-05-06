@@ -3,14 +3,30 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var validator = require('express-validator');
+var exphbs = require('express-handlebars');
+var mongoose = require('mongoose');
+var passport = require('passport');
+var keys = require('./keys.js');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
 
+mongoose.Promise = global.Promise;
+mongoose.connect(keys.mongodb.dbURI, { useNewUrlParser: true }).then(//useNewUrlParser: true,
+  function(res){
+   console.log("Connected to Database Successfully.");
+  }
+).catch(function(err){
+  console.log("Connection to Database failed.");
+  console.log(err);
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+
 app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
