@@ -2,10 +2,13 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var session = require('express-session');
+let flash = require('connect-flash');
 var logger = require('morgan');
-var validator = require('express-validator');
+var expressValidator = require('express-validator');
 var exphbs = require('express-handlebars');
 var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 var passport = require('passport');
 var keys = require('./keys.js');
 
@@ -25,6 +28,8 @@ mongoose.connect(keys.mongodb.dbURI, { useNewUrlParser: true }).then(//useNewUrl
   console.log(err);
 });
 
+require('./config/passport');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 
@@ -32,9 +37,29 @@ app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
 app.use(express.json());
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Body Parser middleware
+// 
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({extended: false}));
+// parse application/json
+app.use(bodyParser.json());
+
+// Express Session middleware
+app.use(session({
+    secret: 'keyboard cat',
+    resave: true,
+    saveUninitialized: true
+//  cookie: { secure: true }
+}));
+
+app.use(expressValidator());
 
 app.use('/', indexRouter);
 app.use('/admin', adminRouter);
