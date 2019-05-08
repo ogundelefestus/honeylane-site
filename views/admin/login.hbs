@@ -1,4 +1,11 @@
 <div class="wrapper fadeInDown">
+  {{#if hasErrors }}
+      <div class="alert alert-danger">
+        {{# each messages }}
+          <p> {{ this }} </p>
+        {{/each}}
+      </div>
+    {{/if}}
   <div id="formContent">
     <!-- Tabs Titles -->
 
