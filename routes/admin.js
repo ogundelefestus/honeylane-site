@@ -27,6 +27,11 @@ router.get('/dashboard', (req, res, next) => {
 	})
 })
 
+router.get('/results', (req, res, next) =>{
+	var messages = req.flash('error');
+	res.render('admin/results', {title : 'Students Results', messages: messages, hasErrors: messages.length > 0})
+})
+
 router.post('/add-new-student', (req, res, next) => {
 	console.log(req.body);
 	let newStudent = new Student({
