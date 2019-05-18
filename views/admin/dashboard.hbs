@@ -1,49 +1,24 @@
 <style type="text/css">
-	
-nav > .nav.nav-tabs{
-
-  border: none;
-    color:#fff;
-    background:#272e38;
-    border-radius:0;
-
+body{
+  background-color: #bbf27d;
 }
-nav > div a.nav-item.nav-link,
-nav > div a.nav-item.nav-link.active
-{
-  border: none;
-    padding: 18px 25px;
-    color:#fff;
-    background:#272e38;
-    border-radius:0;
+*{
+    font-family: 'Ubuntu', sans-serif;
 }
+footer{
 
-nav > div a.nav-item.nav-link.active:after
- {
-  content: "";
-  position: relative;
-  bottom: -60px;
-  left: -10%;
-  border: 15px solid transparent;
-  border-top-color: #e74c3c ;
+  margin-top: 20px;
+  padding-top: 20px;
 }
-.tab-content{
-  background: #fdfdfd;
-    line-height: 25px;
-    border: 1px solid #ddd;
-    border-top:5px solid #e74c3c;
-    border-bottom:5px solid #e74c3c;
-    padding:30px 25px;
+.bg__card__navbar{
+  background-color: #000000;
 }
-
-nav > div a.nav-item.nav-link:hover,
-nav > div a.nav-item.nav-link:focus
-{
-  border: none;
-    background: #e74c3c;
-    color:#fff;
-    border-radius:0;
-    transition:background 0.20s linear;
+.bg__card__footer{
+  background-color: #000000 !important;
+}
+#add__new__list{
+    top: -38px;
+    right: 0px;
 }
 </style>
 {{#if hasErrors }}
@@ -53,102 +28,109 @@ nav > div a.nav-item.nav-link:focus
 		{{/each}}
 	</div>
 {{/if}}
-<p>This is the Admin Dashboard Page</p>
+<main>
+<div class="container my-5">
+       <div class="card-body text-center">
+    <h4 class="card-title">Honeylane Schools Admin Dashboard</h4>
+  </div>
+    {{#if hasErrors }}
+      <div class="alert alert-danger">
+        {{# each messages }}
+          <p> {{ this }} </p>
+        {{/each}}
+      </div>
+    {{/if}}
+    <div class="card">
+        <button id="add__new__list" type="button" class="btn btn-primary position-absolute"  data-toggle="modal" data-target="#myModal"><i class="fas fa-plus"></i> Add a new Student</button>
+        {{# each student}}
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Student Name</th>
+                <th scope="col">Class</th>
+                <th scope="col">Age</th>
+                <th scope="col">Edit Info </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>{{ fullname }}</td>
+                <td>{{ class }}</td>
+                <td>{{ age }} years old</td>
+                <td>
+                    <a class="btn btn-sm btn-primary" href="#"><i class="far fa-edit"></i> edit</a>
+                    <a class="btn btn-sm btn-danger" href="/admin/delete-student/{{_id}}"><i class="fas fa-trash-alt"></i> delete</a>    
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          {{/each}}
+    </div>
+    <!-- Large modal -->
+  </div>
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
 
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
 
- <div class="container">
-              <div class="row">
-                <div class="col-xs-12 ">
-                  <nav>
-                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
-                      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Students</a>
-                      <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Add Results</a>
-                      <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-about" aria-selected="false">About</a>
-                    </div>
-                  </nav>
-                  <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                      <p>Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim.</p>
-                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Add New Student</button>
-                      <table class="table table-hover" id="task-table">
-                        <thead>
-                          <tr>
-                            <th>#</th>
-                            <th>Full Name</th>
-                            <th>Class</th>
-                            <th>Age</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {{# each student}}
-                          <tr>
-                            <td>1</td>
-                            <td>{{ fullname }}</td>
-                            <td>{{ class }}</td>
-                            <td>{{ age }}</td>
-                            <td><a class="btn btn-info" role="button" data-toggle="modal" data-target="#myModal">Edit</a></td>
-                            <td><a class="btn btn-danger" href="/delete/{{ _id }}" role="button">Delete</a></td>
-                          </tr>
-                          {{/each}}
-                        </tbody>
-                      </table>
-                    </div>
-                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                      Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
-                    </div>
-                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                      Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
-                    </div>
-                    <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
-                      Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex.
-                    </div>
-                  </div>
-                
-                </div>
-              </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="banner-form-w3 ml-lg-5">
+              <div class="padding">
+                  <!-- banner form -->
+                  <form action="/admin/add-new-student" method="post">
+                      <h5 class="mb-3">Add New Student</h5>
+                      <div class="form-style-w3ls">
+                          <input placeholder="Student Name" name="fullname" type="text" required="">
+                          <input placeholder="Age" name="age" type="text" required="">
+                          <select name="class">
+                            <option>Class or Standard</option>
+                            <option name="class">KG 1</option>
+                            <option name="class">KG 2</option>
+                            <option name="class">Nursery 1</option>
+                            <option name="class">Nursery 2</option>
+                            <option name="class">Primary 1</option>
+                            <option name="class">Primary 2</option>
+                            <option name="class">Primary 3</option>
+                            <option name="class">Primary 4</option>
+                            <option name="class">Primary 5</option>
+                            <option name="class">JSS 1</option>
+                            <option name="class">JSS 2</option>
+                            <option name="class">JSS 3</option>
+                            <option name="class">SS 1</option>
+                            <option name="class">SS 2</option>
+                            <option name="class">SS 3</option>
+                          </select>
+                          <!--<input placeholder="Password" name="password" type="password" required=""> -->
+                          <button Class="btn"> Submit </button>
+                      </div>
+                  </form>
+          </div>
         </div>
-      </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add New Student</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-    <form action="/admin/add-new-student" method="post">
-      <label>
-        <input type="text" placeholder="Full Name" class="input" name="fullname" required="">
-        <div class="line-box">
-          <div class="line"></div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
         </div>
-      </label>
-      <label>
-        <input type="text" placeholder="Class" class="input" name="class" required="">
-        <div class="line-box">
-          <div class="line"></div>
-        </div>
-      </label>
-      <label>
-        <input type="text" placeholder="Age" class="input" name="age" required="">
-        <div class="line-box">
-          <div class="line"></div>
-        </div>
-      </label>
-      <!-- <input type="hidden" name="_csrf" value="{{ csrfToken }}"> -->
-      <button class="btn btn-primary" type="submit">submit</button>
-    </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
       </div>
     </div>
   </div>
-</div>
+</main>
+<!---->
+
+<!---->
+<footer >
+  <div class="container bg-info p-5">
+
+  </div>
+</footer>
+</body>

@@ -15,7 +15,7 @@
         <!-- nav -->
         <nav class="py-3 d-lg-flex">
             <div id="logo">
-                <h1> <a href="index.html"><img src="images/s2.png" alt=""> Child Learn </a></h1>
+                <h1> <a href="/"><img src="images/s2.png" alt=""> Honeylane Schools </a></h1>
             </div>
             <label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
             <input type="checkbox" id="drop" />
@@ -23,10 +23,15 @@
                 <li class="active"><a href="index.html">Home</a></li>
                 <li class=""><a href="#about">About</a></li>
                 <li class=""><a href="#services">Services</a></li>
-                <li class=""><a href="#stats">Stats</a></li>
                 <li class=""><a href="#testi">Testimonials</a></li>
                 <li class=""><a href="#team">Teachers</a></li>
-                <li class=""><a href="#subscribe">Subscribe</a></li>
+                {{# if login}}
+                <li class=""><a href="/admin/dashboard">Dashboard</a></li>
+                <li class=""><a href="/admin/logout">Logout</a></li>
+                {{ else }}
+                <li class=""><a href="/admin">Login</a></li>
+                {{/if}}
+                
             </ul>
         </nav>
         <!-- //nav -->
@@ -276,54 +281,6 @@
 </section>
 <!-- //services -->
 
-<!-- stats section -->
-<section class="section-stats" id="stats">
-    <div class="py-5">
-        <div class="container py-lg-5">
-        <h3 class="heading mb-sm-5 mb-4">Our statistics</h3>
-            <div class="row text-center">
-                <div class="col-lg-3 col-6">
-                    <div class="w3layouts_stats_left w3_counter_grid">
-                        <div class="stats-icon">
-                            <span class="fa fa-credit-card"></span>
-                        </div>
-                        <p class="counter">1568</p>
-                        <p class="para-text-w3ls">Students Enrolled</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6">
-                    <div class="w3layouts_stats_left w3_counter_grid2"> 
-                        <div class="stats-icon">
-                            <span class="fa fa-users"></span>
-                        </div>
-                        <p class="counter">1900</p>
-                        <p class="para-text-w3ls">Professional Teachers</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6 mt-lg-0 mt-4">
-                    <div class="w3layouts_stats_left w3_counter_grid1"> 
-                        <div class="stats-icon">
-                            <span class="fa fa-dollar"></span>
-                        </div>
-                        <p class="counter">1422</p>
-                        <p class="para-text-w3ls">Classes Conducted</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6 mt-lg-0 mt-4">
-                    <div class="w3layouts_stats_left w3_counter_grid1"> 
-                        <div class="stats-icon">
-                            <span class="fa fa-users"></span>
-                        </div>
-                        <p class="counter">400</p>
-                        <p class="para-text-w3ls">Media Followers</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- //stats section -->
-
 <!-- other services -->
 <section class="other_services py-5" id="why">
     <div class="container py-lg-5 py-3">
@@ -510,8 +467,8 @@
                 <li><a href="#testi" class="">Testimonials </a></li>
             </ul>
             <div class="col-lg-6 copy-right p-0">
-                <p class="">© 2019 Child Learn. All rights reserved | Design by
-                    <a href="http://w3layouts.com"> W3layouts.</a>
+                <p class="">© 2019 Honeylane Schools. Built by
+                    <a href="https://adeyefatoba.tech" target="_blank"> Adeyefa OLuwatoba</a>
                 </p>
             </div>
         </div>

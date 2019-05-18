@@ -28,6 +28,7 @@ router.get('/dashboard', (req, res, next) => {
 })
 
 router.post('/add-new-student', (req, res, next) => {
+	console.log(req.body);
 	let newStudent = new Student({
 		fullname : req.body.fullname,
 		class : req.body.class,
@@ -35,7 +36,7 @@ router.post('/add-new-student', (req, res, next) => {
 	});
 	newStudent.save()
 	.then(result => {
-		req.flash('success', 'The Blog Post Has Been Saved Successfully');
+		req.flash('success', 'The Student Has Been Saved Successfully');
 	    console.log("New Blog Post Saved");
 	    res.redirect('/admin/dashboard');
 	})
@@ -44,4 +45,30 @@ router.post('/add-new-student', (req, res, next) => {
 	})
 })
 
+router.get('/delete-student/:_id', function(req, res){
+	Student.deleteOne({_id : req.params._id})
+	.then(result => {
+		req.flash('success', 'Student has been deleted from Database');
+		res.redirect('/admin/dashboard')
+	})
+	.catch(err => {
+		console.log("There is an Error");
+	})
+});
+
 module.exports = router;
+
+
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/');
+}
+
+function notLoggedIn(req, res, next) {
+    if (!req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/');
+}
