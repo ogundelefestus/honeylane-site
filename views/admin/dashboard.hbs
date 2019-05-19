@@ -33,7 +33,45 @@ footer{
 
 <div class="container bg-info p-5">
   <div style="padding: 15px; background-color: white;">
-    <a href="/admin/results"> Student Results</a>
+    <a href="/admin/dashboard">Admin Dashboard</a>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <!-- <form action="#">
+          <input type="text" placeholder="Search for Student" name="search">
+          <small>search by name</small>
+          <button type="submit">Submit</button>
+        </form> -->
+    </div>
+    <div class="col-sm-4">
+      <form action="/admin/search-class" method="post">
+          <select name="class">
+                <option>Class or Standard</option>
+                <option name="class">KG 1</option>
+                <option name="class">KG 2</option>
+                <option name="class">Nursery 1</option>
+                <option name="class">Nursery 2</option>
+                <option name="class">Primary 1</option>
+                <option name="class">Primary 2</option>
+                <option name="class">Primary 3</option>
+                <option name="class">Primary 4</option>
+                <option name="class">Primary 5</option>
+                <option name="class">JSS 1</option>
+                <option name="class">JSS 2</option>
+                <option name="class">JSS 3</option>
+                <option name="class">SS 1</option>
+                <option name="class">SS 2</option>
+                <option name="class">SS 3</option>
+              </select>
+          <small>search by class</small>
+          <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div class="col-sm-4">
+      
+    </div>
   </div>
 </div>
 
@@ -50,7 +88,6 @@ footer{
     {{/if}}
     <div class="card">
         <button id="add__new__list" type="button" class="btn btn-primary position-absolute"  data-toggle="modal" data-target="#myModal"><i class="fas fa-plus"></i> Add a new Student</button>
-        {{# each student}}
         <table class="table table-hover">
             <thead>
               <tr>
@@ -58,23 +95,26 @@ footer{
                 <th scope="col">Student Name</th>
                 <th scope="col">Class</th>
                 <th scope="col">Age</th>
-                <th scope="col">Edit Info </th>
+                <th scope="col">Delete Student </th>
               </tr>
             </thead>
+            {{# each student}}
             <tbody>
+              
               <tr>
                 <th scope="row">1</th>
                 <td>{{ fullname }}</td>
                 <td>{{ class }}</td>
                 <td>{{ age }} years old</td>
                 <td>
-                    <a class="btn btn-sm btn-primary" href="#"><i class="far fa-edit"></i> edit</a>
+                    <!-- <a class="btn btn-info" role="button" data-toggle="modal" data-target="#editModal">Edit</a> -->
                     <a class="btn btn-sm btn-danger" href="/admin/delete-student/{{_id}}"><i class="fas fa-trash-alt"></i> delete</a>    
                 </td>
               </tr>
             </tbody>
+            {{/each}}
           </table>
-          {{/each}}
+          
     </div>
     <!-- Large modal -->
   </div>

@@ -28,8 +28,17 @@ router.get('/dashboard', (req, res, next) => {
 })
 
 router.get('/results', (req, res, next) =>{
-	var messages = req.flash('error');
-	res.render('admin/results', {title : 'Students Results', messages: messages, hasErrors: messages.length > 0})
+	if (req.session.students) {
+
+        var students = req.session.students;
+        console.log("These are the students ", students);
+        req.session.students = null;
+        var messages = req.flash('error');
+		res.render('admin/results', {title : 'Students Results', students : students, messages: messages, hasErrors: messages.length > 0})
+    }
+    else {
+    	res.redirect('/admin/dashboard');
+    }
 })
 
 router.post('/add-new-student', (req, res, next) => {
@@ -49,6 +58,18 @@ router.post('/add-new-student', (req, res, next) => {
 		console.log(err);
 	})
 })
+
+router.post('/search-class', (req, res, next) => {
+	let theclass = req.body.class;
+	Student.find({class : theclass})
+	.then(students => {
+		req.session.students = students;
+		res.redirect('/admin/results');
+	})
+	.catch(err => {
+		console.log(err);
+	})
+});
 
 router.get('/delete-student/:_id', function(req, res){
 	Student.deleteOne({_id : req.params._id})
