@@ -39,27 +39,41 @@
 	          <!-- <button type="submit">Submit</button> -->
 		</div>
 		<div class="col-md-4">
-			<select id="class" name="class">
+			<select id="class">
                 <option>Choose Subjects</option>
-                <option name="class">English</option>
-                <option name="class">Mathematics</option>
-                <option name="class">Basic Science</option>
-                <option name="class">Basic Technology</option>
-                <option name="class">Christian Religious Knowledge</option>
-                <option name="class">Home Economics</option>
-                <option name="class">Social Studies</option>
-                <option name="class">Number Work</option>
-                <option name="class">Letter Work</option>
+                <option>English</option>
+                <option>Mathematics</option>
+                <option>Basic Science</option>
+                <option>Basic Technology</option>
+                <option>Christian Religious Knowledge</option>
+                <option>Home Economics</option>
+                <option>Social Studies</option>
+                <option>Number Work</option>
+                <option>Letter Work</option>
             </select>
-            <button type="button">Add Subject</button>
+            <button id="add_subject" type="button">Add Subject</button>
 		</div>
 		<div class="col-md-4">
 			
 		</div>
 	</div>
+	<div style="margin-top: 10px" class="row">
+		<div class="col-md-12">
+			<div id="add_result">
+				
+			</div>
+		</div>
+	</div>
 </div>
 </form>
 <script type="text/javascript">
-	let class = $("#class").val();
-	alert(class);
+	$(document).ready(function() {
+		let subjects = []
+		$('#add_subject').click(function(){
+			let selected_class = $( "#class option:selected" ).text();
+			subjects.push(selected_class)
+			console.log(subjects)
+			$('#add_result').append("<p>" + selected_class + "</p>" + "<input type='text' placeholder='Enter CA Score'>" + "<input type='text' placeholder='Enter Exam Score'>");
+		})
+	})
 </script>
