@@ -6,6 +6,10 @@
 		margin-left: 70px;
 		font-size: 20px;
 	}
+	.score{
+		margin-left: 10px;
+		margin-right: 10px;
+	}
 </style>
 <div class="container bg-info p-5">
   <div style="padding: 15px; background-color: white;">
@@ -24,8 +28,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-4">
-	          <select name="year">
-                <option>Year and Term</option>
+	          <select required name="year">
                 <option name="year">2019/2020 1st Term</option>
                 <option name="year">2019/2020 2nd Term</option>
                 <option name="year">2019/2020 3rd Term</option>
@@ -39,8 +42,8 @@
 	          <!-- <button type="submit">Submit</button> -->
 		</div>
 		<div class="col-md-4">
+			<small>select subject to add</small>
 			<select id="class">
-                <option>Choose Subjects</option>
                 <option>English</option>
                 <option>Mathematics</option>
                 <option>Basic Science</option>
@@ -69,11 +72,34 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		let subjects = []
+		let ca_scores = []
+		let exam_scores = []
+		let totals = []
 		$('#add_subject').click(function(){
 			let selected_class = $( "#class option:selected" ).text();
 			subjects.push(selected_class)
 			console.log(subjects)
-			$('#add_result').append("<p>" + selected_class + "</p>" + "<input type='text' placeholder='Enter CA Score'>" + "<input type='text' placeholder='Enter Exam Score'>");
+			console.log("1", selected_class)
+			$('#add_result').append("<p class='score'>" + selected_class + "</p>" + "<input id='ca"+selected_class+"' class='score' type='text' placeholder='Enter CA Score'>" + "<input id='exam"+selected_class+"' class='score' type='text' placeholder='Enter Exam Score'>" + "<input id='total"+selected_class+"' class='score' type='text' placeholder='Enter Total' disabled>" + "<button id='add_score"+selected_class+"' type='button'>Add Score</button>");
+			let btn_id = 'add_score'+selected_class
+			console.log("Button ", btn_id)
+			// Still fixing some bugs here
+			$('#' + btn_id).click(function(){
+				var ca_id = 'ca'+selected_class;
+				var exam_id = 'exam'+selected_class;
+				var total_id = 'total'+selected_class;
+				let ca_score = $('#'+ca_id).val();
+				let exam_score = $('#'+exam_id).val();
+				let total = parseInt(ca_score, 10) + parseInt(exam_score, 10);
+				$('#' + total_id).val(total)
+				ca_scores.push(ca_score)
+				exam_scores.push(exam_score)
+				totals.push(total)
+				console.log(ca_scores, exam_scores, totals);
+				console.log("2", selected_class)
+				selected_class = null;
+				console.log("3", selected_class)
+			})
 		})
 	})
 </script>
