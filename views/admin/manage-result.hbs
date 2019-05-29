@@ -24,20 +24,42 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-4">
-	          <select name="class">
-                <option>Class or Standard</option>
-                <option name="class">2019/2020 1st Term</option>
-                <option name="class">2019/2020 2nd Term</option>
-                <option name="class">2019/2020 3rd Term</option>
-                <option name="class">2020/2021 1st Term</option>
-                <option name="class">2020/2021 2nd Term</option>
-                <option name="class">2020/2021 3rd Term</option>
-                <option name="class">2021/2022 1st Term</option>
-                <option name="class">2021/2022 2nd Term</option>
-                <option name="class">2021/2022 3rd Term</option>
+	          <select name="year">
+                <option>Year and Term</option>
+                <option name="year">2019/2020 1st Term</option>
+                <option name="year">2019/2020 2nd Term</option>
+                <option name="year">2019/2020 3rd Term</option>
+                <option name="year">2020/2021 1st Term</option>
+                <option name="year">2020/2021 2nd Term</option>
+                <option name="year">2020/2021 3rd Term</option>
+                <option name="year">2021/2022 1st Term</option>
+                <option name="year">2021/2022 2nd Term</option>
+                <option name="year">2021/2022 3rd Term</option>
               </select>
 	          <!-- <button type="submit">Submit</button> -->
+		</div>
+		<div class="col-md-4">
+			<select id="class" name="class">
+                <option>Choose Subjects</option>
+                <option name="class">English</option>
+                <option name="class">Mathematics</option>
+                <option name="class">Basic Science</option>
+                <option name="class">Basic Technology</option>
+                <option name="class">Christian Religious Knowledge</option>
+                <option name="class">Home Economics</option>
+                <option name="class">Social Studies</option>
+                <option name="class">Number Work</option>
+                <option name="class">Letter Work</option>
+            </select>
+            <button type="button">Add Subject</button>
+		</div>
+		<div class="col-md-4">
+			
 		</div>
 	</div>
 </div>
 </form>
+<script type="text/javascript">
+	let class = $("#class").val();
+	alert(class);
+</script>
