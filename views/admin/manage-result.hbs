@@ -57,12 +57,24 @@
             <button id="add_subject" type="button">Add Subject</button>
 		</div>
 		<div class="col-md-4">
-			
+			<button id="attendance_remarks" type="button">Add Attendance and Remarks</button>
 		</div>
 	</div>
 	<div style="margin-top: 10px" class="row">
 		<div class="col-md-12">
 			<div id="add_result">
+				
+			</div>
+		</div>
+	</div>
+	<div style="margin-top: 10px" class="row">
+		<div class="col-md-6">
+			<div id="add_remarks">
+				
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div id="add_attendance">
 				
 			</div>
 		</div>
@@ -79,7 +91,7 @@
 			let selected_class = $( "#class option:selected" ).text();
 			subjects.push(selected_class)
 			console.log(subjects)
-			$('#add_result').append("<p class='score'>" + selected_class + "</p>" + "<input id='ca"+selected_class+"' class='score' type='text' placeholder='Enter CA Score'>" + "<input id='exam"+selected_class+"' class='score' type='text' placeholder='Enter Exam Score'>" + "<input id='total"+selected_class+"' class='score' type='text' placeholder='Enter Total' disabled>" + "<button id='add_score"+selected_class+"' type='button'>Add Score</button>");
+			$('#add_result').append("<p class='score'>" + selected_class + "</p>" + "<input max='40' id='ca"+selected_class+"' class='score' type='text' placeholder='Enter CA Score'>" + "<input max='60' id='exam"+selected_class+"' class='score' type='text' placeholder='Enter Exam Score'>" + "<input id='total"+selected_class+"' class='score' type='text' placeholder='Enter Total' disabled>" + "<button id='add_score"+selected_class+"' type='button'>Add Score</button>");
 			let btn_id = 'add_score'+selected_class
 			// Still fixing some bugs here
 			$('#' + btn_id).click(function(){
@@ -96,6 +108,10 @@
 				console.log(ca_scores, exam_scores, totals);
 				selected_class = null;
 			})
+		})
+		$('#attendance_remarks').click(function(){
+			$('#add_remarks').append("<h3>Add Remarks</h3>" + "<textarea rows='4' cols='40' required></textarea>")
+			$('#add_attendance').append("<h3>Add Attendance</h3>" + "<input type='text' id='days_opened' placeholder='Days School Opened' required>" + "<input type='text' id='days_present' placeholder='Days Student is Present' required>" + "<input id='days_absent' type='text' placeholder='Days Student is Absent' required>")
 		})
 	})
 </script>
