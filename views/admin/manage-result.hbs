@@ -46,13 +46,13 @@
 			<select id="class">
                 <option>English</option>
                 <option>Mathematics</option>
-                <option>Basic Science</option>
-                <option>Basic Technology</option>
-                <option>Christian Religious Knowledge</option>
-                <option>Home Economics</option>
-                <option>Social Studies</option>
-                <option>Number Work</option>
-                <option>Letter Work</option>
+                <option>Basic-Science</option>
+                <option>Basic-Technology</option>
+                <option>Christian-Religious-Knowledge</option>
+                <option>Home-Economics</option>
+                <option>Social-Studies</option>
+                <option>Number-Work</option>
+                <option>Letter-Work</option>
             </select>
             <button id="add_subject" type="button">Add Subject</button>
 		</div>
@@ -79,10 +79,8 @@
 			let selected_class = $( "#class option:selected" ).text();
 			subjects.push(selected_class)
 			console.log(subjects)
-			console.log("1", selected_class)
 			$('#add_result').append("<p class='score'>" + selected_class + "</p>" + "<input id='ca"+selected_class+"' class='score' type='text' placeholder='Enter CA Score'>" + "<input id='exam"+selected_class+"' class='score' type='text' placeholder='Enter Exam Score'>" + "<input id='total"+selected_class+"' class='score' type='text' placeholder='Enter Total' disabled>" + "<button id='add_score"+selected_class+"' type='button'>Add Score</button>");
 			let btn_id = 'add_score'+selected_class
-			console.log("Button ", btn_id)
 			// Still fixing some bugs here
 			$('#' + btn_id).click(function(){
 				var ca_id = 'ca'+selected_class;
@@ -96,9 +94,7 @@
 				exam_scores.push(exam_score)
 				totals.push(total)
 				console.log(ca_scores, exam_scores, totals);
-				console.log("2", selected_class)
 				selected_class = null;
-				console.log("3", selected_class)
 			})
 		})
 	})

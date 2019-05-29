@@ -20,7 +20,6 @@ router.get('/manage-result/:id', (req, res, next) => {
 	var student_id = req.params.id;
 	Student.find({_id : student_id})
 	.then(student => {
-		console.log(student);
 		res.render('admin/manage-result', {title : 'Manage Student Result', student: student})
 	})
 	.catch(err => {
