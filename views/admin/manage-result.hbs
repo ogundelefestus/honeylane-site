@@ -1,0 +1,43 @@
+<style type="text/css">
+	*{
+	    font-family: 'Ubuntu', sans-serif;
+	}
+	.student-details{
+		margin-left: 70px;
+		font-size: 20px;
+	}
+</style>
+<div class="container bg-info p-5">
+  <div style="padding: 15px; background-color: white;">
+    <a href="/admin/dashboard"> Admin Dashboard</a>
+  </div>
+</div>
+<div class="student-details">
+	{{# student }}
+		<p>Name : {{ fullname }} </p>
+		<p>Class : {{ class }} </p>
+		<p>Age : {{ age }} </p>
+	{{/student}}
+	<h3>Enter Results</h3>
+</div>
+<form action="/admin/search-class" method="post">
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">
+	          <select name="class">
+                <option>Class or Standard</option>
+                <option name="class">2019/2020 1st Term</option>
+                <option name="class">2019/2020 2nd Term</option>
+                <option name="class">2019/2020 3rd Term</option>
+                <option name="class">2020/2021 1st Term</option>
+                <option name="class">2020/2021 2nd Term</option>
+                <option name="class">2020/2021 3rd Term</option>
+                <option name="class">2021/2022 1st Term</option>
+                <option name="class">2021/2022 2nd Term</option>
+                <option name="class">2021/2022 3rd Term</option>
+              </select>
+	          <!-- <button type="submit">Submit</button> -->
+		</div>
+	</div>
+</div>
+</form>

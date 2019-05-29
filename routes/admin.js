@@ -16,6 +16,20 @@ router.post('/signin', passport.authenticate('local.signin', {
     failureFlash: true
 }));
 
+router.get('/manage-result/:id', (req, res, next) => {
+	var student_id = req.params.id;
+	Student.find({_id : student_id})
+	.then(student => {
+		console.log(student);
+		res.render('admin/manage-result', {title : 'Manage Student Result', student: student})
+	})
+	.catch(err => {
+		console.log("Error" + err);
+	})
+	
+})
+
+// Admin Dashboard Page
 router.get('/dashboard', (req, res, next) => {
 	Student.find({})
 	.then(student=> {
@@ -27,14 +41,16 @@ router.get('/dashboard', (req, res, next) => {
 	})
 })
 
-router.get('/results', (req, res, next) =>{
+
+//List Search Result Page
+router.get('/search', (req, res, next) =>{
 	if (req.session.students) {
 
         var students = req.session.students;
-        console.log("These are the students ", students);
+        // console.log("These are the students ", students);
         req.session.students = null;
         var messages = req.flash('error');
-		res.render('admin/results', {title : 'Students Results', students : students, messages: messages, hasErrors: messages.length > 0})
+		res.render('admin/search', {title : 'Search Results', students : students, messages: messages, hasErrors: messages.length > 0})
     }
     else {
     	res.redirect('/admin/dashboard');
@@ -64,7 +80,7 @@ router.post('/search-class', (req, res, next) => {
 	Student.find({class : theclass})
 	.then(students => {
 		req.session.students = students;
-		res.redirect('/admin/results');
+		res.redirect('/admin/search');
 	})
 	.catch(err => {
 		console.log(err);

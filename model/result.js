@@ -3,7 +3,10 @@ var Schema = mongoose.Schema;
 
 var resultSchema = new Schema({
     student : {type: Schema.Types.ObjectId, ref: 'Student'},
-    subject_scores: {type: {}}
+    subjects : [{type: String}],
+    ca_score : [{type: Number}],
+    exam_score : [{type: Number}],
+    total : [{type: Number}]
 });
 
 
