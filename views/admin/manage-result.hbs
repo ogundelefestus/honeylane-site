@@ -19,12 +19,11 @@
     <a href="/admin/dashboard"> Admin Dashboard</a>
   </div>
 </div>
+{{# student }}
 <div class="student-details">
-	{{# student }}
 		<p>Name : {{ fullname }} </p>
 		<p>Class : {{ class }} </p>
 		<p>Age : {{ age }} </p>
-	{{/student}}
 	<h3>Enter Results</h3>
 </div>
 <form id="myForm" action="/admin/add-result" method="POST">
@@ -86,8 +85,10 @@
 	<input id="ca_scores" name="ca_scores" value="" hidden>
 	<input id="exam_scores" name="exam_scores" value="" hidden>
 	<input id="totals" name="totals" value="" hidden>
+	<input name="student_id" value="{{_id}}" hidden>
 </div>
 </form>
+{{/student}}
 <script type="text/javascript">
 	$(document).ready(function() {
 		let subjects = []
@@ -124,8 +125,6 @@
 				document.getElementById('ca_scores').value = ca_scores;
 				document.getElementById('exam_scores').value = exam_scores;
 				document.getElementById('totals').value = totals;
-
-				alert("jsjjsjs")
 			})
 		})
 	})

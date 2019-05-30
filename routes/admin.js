@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var Student = require('../model/student');
+var Result = require('../model/result');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -30,7 +31,31 @@ router.get('/manage-result/:id', (req, res, next) => {
 
 router.post('/add-result', (req, res, next) => {
 	console.log(req.body);
-	res.redirect('/admin/dashboard');
+	let subjects = req.body.subjects.split(',');
+	let ca_scores = req.body.ca_scores.split(',')
+	let exam_scores = req.body.exam_scores.split(',')
+	let totals = req.body.totals.split(',')
+	
+	let newResult = new Result({
+		student_id : req.body.student_id,
+		subjects : subjects,
+		ca_score : ca_scores,
+		exam_score : exam_scores,
+		total : totals,
+		year : req.body.year,
+		remark : req.body.remarks,
+		school_opened : req.body.school_opened,
+		student_present : req.body.days_present,
+		student_absent : req.body.days_absent
+	});
+	newResult.save()
+	.then(result => {
+		req.flash('success', 'Result for Student has been Added');
+		res.redirect('/admin/dashboard');
+	})
+	.catch(err => {
+		console.log(err);
+	})
 })
 
 // Admin Dashboard Page
