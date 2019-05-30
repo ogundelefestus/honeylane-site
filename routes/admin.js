@@ -91,7 +91,11 @@ router.post('/add-new-student', (req, res, next) => {
 	let newStudent = new Student({
 		fullname : req.body.fullname,
 		class : req.body.class,
-		age: req.body.age
+		age: req.body.age,
+		sex: req.body.sex,
+		religion: req.body.religion,
+		term_joined: req.body.term_joined,
+		state_of_origin : req.body.state_of_origin
 	});
 	newStudent.save()
 	.then(result => {
