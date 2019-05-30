@@ -10,6 +10,9 @@
 		margin-left: 10px;
 		margin-right: 10px;
 	}
+	.attendance{
+		margin: 10px;
+	}
 </style>
 <div class="container bg-info p-5">
   <div style="padding: 15px; background-color: white;">
@@ -111,7 +114,7 @@
 		})
 		$('#attendance_remarks').click(function(){
 			$('#add_remarks').append("<h3>Add Remarks</h3>" + "<textarea rows='4' cols='40' required></textarea>")
-			$('#add_attendance').append("<h3>Add Attendance</h3>" + "<input type='text' id='days_opened' placeholder='Days School Opened' required>" + "<input type='text' id='days_present' placeholder='Days Student is Present' required>" + "<input id='days_absent' type='text' placeholder='Days Student is Absent' required>")
+			$('#add_attendance').append("<h3>Add Attendance</h3>" + "<input class='attendance' type='text' id='days_opened' placeholder='Days School Opened' required>" + "<input class='attendance' type='text' id='days_present' placeholder='Days Student is Present' required>" + "<input id='days_absent' class='attendance' type='text' placeholder='Days Student is Absent' required>" + "<button id='submit_result' class='btn btn-info attendance' type='button'>Submit Result/button>")
 		})
 	})
 </script>
