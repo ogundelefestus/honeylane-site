@@ -27,7 +27,7 @@
 	{{/student}}
 	<h3>Enter Results</h3>
 </div>
-<form action="/admin/add-result" method="POST">
+<form id="myForm" action="/admin/add-result" method="POST">
 <div class="container">
 	<div class="row">
 		<div class="col-md-4">
@@ -82,10 +82,10 @@
 			</div>
 		</div>
 	</div>
-	<input type="text" name="subjects" value="" hidden>
-	<input type="text" name="ca_scores" value="" hidden>
-	<input type="text" name="exam_scores" value="" hidden>
-	<input type="text" name="totals" value="" hidden>
+	<input id="subjects" name="subjects" value="" hidden>
+	<input id="ca_scores" name="ca_scores" value="" hidden>
+	<input id="exam_scores" name="exam_scores" value="" hidden>
+	<input id="totals" name="totals" value="" hidden>
 </div>
 </form>
 <script type="text/javascript">
@@ -118,11 +118,15 @@
 		})
 		$('#attendance_remarks').click(function(){
 			$('#add_remarks').append("<h3>Add Remarks</h3>" + "<textarea rows='4' cols='40' required></textarea>")
-			$('#add_attendance').append("<h3>Add Attendance</h3>" + "<input class='attendance' type='text' id='days_opened' placeholder='Days School Opened' required>" + "<input class='attendance' type='text' id='days_present' placeholder='Days Student is Present' required>" + "<input id='days_absent' class='attendance' type='text' placeholder='Days Student is Absent' required>" + "<button id='submit_result' onClick='addValues()' class='btn btn-info attendance' type='submit'>Submit Result</button>")
+			$('#add_attendance').append("<h3>Add Attendance</h3>" + "<input class='attendance' type='text' id='days_opened' placeholder='Days School Opened' required>" + "<input class='attendance' type='text' id='days_present' placeholder='Days Student is Present' required>" + "<input id='days_absent' class='attendance' type='text' placeholder='Days Student is Absent' required>" + "<button id='submit_result' class='btn btn-info attendance' type='submit'>Submit Result</button>")
+			$('#submit_result').click(function(){
+				document.getElementById('subjects').value = subjects;
+				document.getElementById('ca_scores').value = ca_scores;
+				document.getElementById('exam_scores').value = exam_scores;
+				document.getElementById('totals').value = totals;
+
+				alert("jsjjsjs")
+			})
 		})
-		function addValues() {
-			// body...
-			alert("sgshshshsh")
-		}
 	})
 </script>

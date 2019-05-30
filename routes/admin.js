@@ -30,7 +30,6 @@ router.get('/manage-result/:id', (req, res, next) => {
 
 router.post('/add-result', (req, res, next) => {
 	console.log(req.body);
-	console.log(req.body.subjects);
 	res.redirect('/admin/dashboard');
 })
 
