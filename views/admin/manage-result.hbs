@@ -20,12 +20,29 @@
   </div>
 </div>
 {{# student }}
-<div class="student-details">
-		<p>Name : {{ fullname }} </p>
-		<p>Class : {{ class }} </p>
-		<p>Age : {{ age }} </p>
-	<h3>Enter Results</h3>
+<div style="text-align: center;">
+	<form>
+	<h4>Check Student Result</h4>
+	<select required name="year">
+		<option name="year">Select Term and Session</option>
+        <option name="year">2019/2020 1st Term</option>
+        <option name="year">2019/2020 2nd Term</option>
+        <option name="year">2019/2020 3rd Term</option>
+        <option name="year">2020/2021 1st Term</option>
+        <option name="year">2020/2021 2nd Term</option>
+        <option name="year">2020/2021 3rd Term</option>
+        <option name="year">2021/2022 1st Term</option>
+        <option name="year">2021/2022 2nd Term</option>
+        <option name="year">2021/2022 3rd Term</option>
+    </select>
+    <button type="submit" class="btn btn-success">Search</button>
+</form>
 </div>
+<div class="student-details">
+	<p>Name : {{ fullname }} </p>
+	<p>Class : {{ class }} </p>
+</div>
+<h2 class="student-details">Enter Results</h2>
 <form id="myForm" action="/admin/add-result" method="POST">
 <div class="container">
 	<div class="row">
