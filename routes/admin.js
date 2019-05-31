@@ -29,6 +29,17 @@ router.get('/manage-result/:id', (req, res, next) => {
 	
 })
 
+router.post('/search-result', (req, res, next) => {
+	Result.find({year : req.body.year, student_id : req.body.student_id})
+	.then(result => {
+		console.log(result)
+		res.redirect('/admin/dashboard');
+	})
+	.catch(err => {
+		console.log(err);
+	})
+})
+
 router.post('/add-result', (req, res, next) => {
 	console.log(req.body);
 	let subjects = req.body.subjects.split(',');
