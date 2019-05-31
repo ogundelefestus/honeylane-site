@@ -35,26 +35,39 @@ router.post('/add-result', (req, res, next) => {
 	let ca_scores = req.body.ca_scores.split(',')
 	let exam_scores = req.body.exam_scores.split(',')
 	let totals = req.body.totals.split(',')
-	
-	let newResult = new Result({
-		student_id : req.body.student_id,
-		subjects : subjects,
-		ca_score : ca_scores,
-		exam_score : exam_scores,
-		total : totals,
-		year : req.body.year,
-		remark : req.body.remarks,
-		school_opened : req.body.school_opened,
-		student_present : req.body.days_present,
-		student_absent : req.body.days_absent
-	});
-	newResult.save()
+
+	Result.find({year : req.body.year, student_id : req.body.student_id})
 	.then(result => {
-		req.flash('success', 'Result for Student has been Added');
-		res.redirect('/admin/dashboard');
+		console.log(result)
+		if (result.length < 1 || result == undefined) {
+			let newResult = new Result({
+				student_id : req.body.student_id,
+				subjects : subjects,
+				ca_score : ca_scores,
+				exam_score : exam_scores,
+				total : totals,
+				year : req.body.year,
+				remark : req.body.remarks,
+				school_opened : req.body.school_opened,
+				student_present : req.body.days_present,
+				student_absent : req.body.days_absent
+			});
+			newResult.save()
+			.then(result => {
+				req.flash('success', 'Result for Student has been Added');
+				res.redirect('/admin/dashboard');
+			})
+			.catch(err => {
+				console.log(err);
+			})
+		}
+		else {
+			req.flash('error', 'Student already has result for that Year and Term');
+		    res.redirect('/admin/dashboard');
+		}
 	})
 	.catch(err => {
-		console.log(err);
+
 	})
 })
 
@@ -63,7 +76,8 @@ router.get('/dashboard', (req, res, next) => {
 	Student.find({})
 	.then(student=> {
 		var messages = req.flash('error');
-		res.render('admin/dashboard', {title: 'Honeylane Schools | Admin Dashboard', student: student, messages: messages, hasErrors: messages.length > 0});
+		var successMsg = req.flash('success');
+		res.render('admin/dashboard', {title: 'Honeylane Schools | Admin Dashboard', student: student, successMsg: successMsg, noMessages: !successMsg, messages: messages, hasErrors: messages.length > 0});
 	})
 	.catch(err => {
 		console.log(err);

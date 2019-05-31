@@ -21,13 +21,6 @@ footer{
     right: 0px;
 }
 </style>
-{{#if hasErrors }}
-	<div class="alert alert-danger">
-		{{# each messages }}
-			<p> {{ this }} </p>
-		{{/each}}
-	</div>
-{{/if}}
 <main>
   <!---->
 
@@ -86,6 +79,9 @@ footer{
         {{/each}}
       </div>
     {{/if}}
+    <div id="success" class="alert alert-success" {{#if noMessages}}hidden{{/if}}>
+        {{ successMsg}}
+    </div>
     <div class="card">
         <button id="add__new__list" type="button" class="btn btn-primary position-absolute"  data-toggle="modal" data-target="#myModal"><i class="fas fa-plus"></i> Add a new Student</button>
         <table class="table table-hover">
