@@ -1,1 +1,35 @@
-<h2>This is the Page to View Student results</h2>
+<style type="text/css">
+	*{
+	    font-family: 'Ubuntu', sans-serif;
+	}
+	.result-header{
+		text-align: center;
+	}
+</style>
+<div class="result-header">
+	<h3>HONEYLANE SCHOOLS</h3><p>(Government Approved)</p>
+	<h4>3, FAVOR STREET, UNITY ESTATE, ABULE EGUN, MOWE, OGUN STATE.</h4>
+	<p>Tel.: 08185432167, 08180058182</p>
+	<h6><strong>1ST TERM REPORT SHEET FOR 2019/2020 ACADEMIC SESSION</strong></h6>
+</div>
+<div class="container">
+	<div class="row">
+		{{# student }}
+		<div class="col-md-4">
+			<p>Name : {{ fullname }}</p>
+			<p>Gender : {{ sex }}</p>
+		</div>
+		<div class="col-md-4">
+			<p>Class : {{ class }}</p>
+			<p>Age : {{ age }} years old</p>
+		</div>
+		{{/student}}
+		{{# result }}
+		<div class="col-md-2">
+			<p>School Opened : {{ school_opened }}</p>
+			<p>Days Present : {{ student_present }}</p>
+			<p>Days Absent : {{ student_absent }}</p>
+		</div>
+		{{/result}}
+	</div>
+</div>

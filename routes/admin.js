@@ -33,8 +33,10 @@ router.get('/manage-result/:id', (req, res, next) => {
 router.get('/view-result', (req, res, next) => {
 	if (req.session.result) {
 		let result = req.session.result;
+		let student = req.session.student;
+		req.session.student = null;
 		req.session.result = null;
-		res.render('admin/view-result', {title : 'Student Result', result : result})
+		res.render('admin/view-result', {title : 'Student Result', student : student, result : result})
 	}
 })
 
@@ -42,8 +44,16 @@ router.post('/search-result', (req, res, next) => {
 	Result.find({year : req.body.year, student_id : req.body.student_id})
 	.then(result => {
 		console.log(result)
-		req.session.result = result;
-		res.redirect('/admin/view-result');
+		Student.find({_id : req.body.student_id})
+		.then(student => {
+			console.log(student);
+			req.session.student = student;
+			req.session.result = result;
+			res.redirect('/admin/view-result');
+		})
+		.catch(err => {
+			console.log(err);
+		})
 	})
 	.catch(err => {
 		console.log(err);
