@@ -29,10 +29,20 @@ router.get('/manage-result/:id', (req, res, next) => {
 	
 })
 
+router.get('/view-result', (req, res, next) => {
+	if (req.session.result) {
+		let result = req.session.result;
+		req.session.result = null;
+		res.render('admin/view-result', {title : 'Student Result', result : result})
+	}
+})
+
 router.post('/search-result', (req, res, next) => {
 	Result.find({year : req.body.year, student_id : req.body.student_id})
 	.then(result => {
 		console.log(result)
+		console.log(result.ca_score)
+		req.session.result = result;
 		res.redirect('/admin/dashboard');
 	})
 	.catch(err => {
