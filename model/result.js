@@ -2,12 +2,15 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var resultSchema = new Schema({
-    student_id : {type: String },
+    student_id : {type: String, require: true },
     year : {type: String},
     subjects : [{type: String}],
-    ca_score : [{type: String}],
-    exam_score : [{type: String}],
-    total : [{type: String}],
+    ca_score : [{type: Number}],
+    exam_score : [{type: Number}],
+    ca_average: {type: Number, require: true},
+    exam_average: {type: Number, require: true},
+    total_average: {type:Number, require: true},
+    total : [{type: Number}],
     remark : {type: String},
     school_opened : {type: String},
     student_present : {type : String},
