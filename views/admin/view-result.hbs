@@ -4,7 +4,7 @@
 	}
 	.result-header{
 		text-align: center;
-		background-color: #808080;
+		background-color: #C0C0C0;
 	}
 </style>
 <div class="result-header">
@@ -26,11 +26,14 @@
 		</div>
 		{{/student}}
 		{{# result }}
-		<div class="col-md-2">
-			<p>School Opened : {{ school_opened }}</p>
+		<div class="col-md-4">
+			<p>Days School Opened : {{ school_opened }}</p>
 			<p>Days Present : {{ student_present }}</p>
 			<p>Days Absent : {{ student_absent }}</p>
 		</div>
 		{{/result}}
 	</div>
+</div>
+<div class="result">
+	
 </div>
