@@ -11,7 +11,7 @@
 	<h3>HONEYLANE SCHOOLS</h3><p>(Government Approved)</p>
 	<h4>3, FAVOR STREET, UNITY ESTATE, ABULE EGUN, MOWE, OGUN STATE.</h4>
 	<p>Tel.: 08185432167, 08180058182</p>
-	<h6><strong>1ST TERM REPORT SHEET FOR 2019/2020 ACADEMIC SESSION</strong></h6>
+	<h6>{{# result }}<strong> {{ year }} ACADEMIC SESSION</strong>{{/result}}</h6>
 </div>
 <div class="container">
 	<div class="row">
@@ -35,5 +35,41 @@
 	</div>
 </div>
 <div class="result">
-	
+	<table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Subjects</th>
+            <th scope="col">CA /40</th>
+            <th scope="col">EXAM /60</th>
+            <th scope="col">TOTAL /100</th>
+            <th scope="col">GRADE</th>
+            <th scope="col">REMARKS</th>
+            <th scope="col">1ST TERM</th>
+            <th scope="col">2ND TERM </th>
+            <th scope="col">3RD TERM </th>
+            <th scope="col">SIGNATURE </th>
+          </tr>
+        </thead>
+        {{# each result}}
+        <tbody>
+          
+          <tr>
+          	{{# each subjects }}
+            <td>{{ this }}</td>
+            {{/each}}
+            {{# each ca_score }}
+            <td> {{ this }} </td>
+            {{/each}}
+            <td>years old</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>  </td>
+            <td>  </td>
+            <td>  </td>
+          </tr>
+        </tbody>
+        {{/each}}
+    </table>
 </div>
