@@ -11,6 +11,7 @@ var resultSchema = new Schema({
     exam_average: {type: Number, require: true},
     total_average: {type:Number, require: true},
     total : [{type: Number}],
+    grade : [{type: String}],
     remark : {type: String},
     school_opened : {type: String},
     student_present : {type : String},

@@ -4,6 +4,31 @@ var passport = require('passport');
 var Student = require('../model/student');
 var Result = require('../model/result');
 
+function assignGrade(arr){
+	let gradeArr = []
+	for (var i = 0; i < arr.length; i++) {
+		if (arr[i] >= 80){
+             gradeArr.push("A")
+		}
+		else if (arr[i] >= 70 && arr[i] <= 79) {
+			gradeArr.push("B");
+		}
+		else if (arr[i] >= 60 && arr[i] <= 69 ) {
+			gradeArr.push("C")
+		}
+		else if (arr[i] >= 50 && arr[i] <= 59) {
+			gradeArr.push("D")
+		}
+		else if (arr[i] >=40 && arr[i] <= 49) {
+			gradeArr.push("E")
+		}
+		else{
+			gradeArr.push("F")
+		}
+	}
+	return gradeArr;
+}
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -76,6 +101,8 @@ router.post('/add-result', (req, res, next) => {
         return sum + value;
     }, 0) / ca_scores.length;
 
+    let grade = assignGrade(totals);
+    console.log("This is the grade ", grade);
 	Result.find({year : req.body.year, student_id : req.body.student_id})
 	.then(result => {
 		if (result.length < 1 || result == undefined) {
@@ -88,6 +115,7 @@ router.post('/add-result', (req, res, next) => {
 				ca_average: ca_average,
 				exam_average: exam_average,
 				total_average: total_average,
+				grade : grade,
 				year : req.body.year,
 				remark : req.body.remarks,
 				school_opened : req.body.school_opened,
