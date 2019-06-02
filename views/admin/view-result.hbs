@@ -35,7 +35,7 @@
 	</div>
 </div>
 <div class="result">
-	<table class="table table-hover">
+	<table class="table table-hover" border="1|0">
         <thead>
           <tr>
             <th scope="col">Subjects</th>
@@ -43,7 +43,6 @@
             <th scope="col">EXAM /60</th>
             <th scope="col">TOTAL /100</th>
             <th scope="col">GRADE</th>
-            <th scope="col">REMARKS</th>
             <th scope="col">1ST TERM</th>
             <th scope="col">2ND TERM </th>
             <th scope="col">3RD TERM </th>
@@ -54,15 +53,26 @@
         <tbody>
           
           <tr>
-          	{{# each subjects }}
-            <td>{{ this }}</td>
+            <td>
+            {{# each subjects }}
+            <p>{{ this }}</p><hr>
             {{/each}}
+            </td>
+            <td>
             {{# each ca_score }}
-            <td> {{ this }} </td>
+            <p>{{ this }}</p><hr>
             {{/each}}
-            <td>years old</td>
-            <td></td>
-            <td></td>
+            </td>
+            <td>
+            {{# each exam_score }}
+            <p>{{ this }}</p><hr>
+            {{/each}}
+            </td>
+            <td>
+            {{# each total }}
+            <p>{{ this }}</p><hr>
+            {{/each}}
+            </td>
             <td></td>
             <td></td>
             <td>  </td>
