@@ -6,6 +6,13 @@
 		text-align: center;
 		background-color: #C0C0C0;
 	}
+    .subjects {
+      display: block;
+      width: 100px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
 </style>
 <div class="result-header">
 	<h3>HONEYLANE SCHOOLS</h3><p>(Government Approved)</p>
@@ -34,71 +41,100 @@
 		{{/result}}
 	</div>
 </div>
-<div class="result">
-	<table class="table table-hover" border="1|0">
-        <thead>
-          <tr>
-            <th scope="col">Subjects</th>
-            <th scope="col">CA /40</th>
-            <th scope="col">EXAM /60</th>
-            <th scope="col">TOTAL /100</th>
-            <th scope="col">GRADE</th>
-            <th scope="col">1ST TERM</th>
-            <th scope="col">2ND TERM </th>
-            <th scope="col">3RD TERM </th>
-            <th scope="col">SIGNATURE </th>
-          </tr>
-        </thead>
-        {{# each result}}
-        <tbody>
-          
-          <tr>
-            <td>
-            {{# each subjects }}
-            <p><strong>{{ this }}</strong></p><hr>
-            {{/each}}
-            </td>
-            <td>
-            {{# each ca_score }}
-            <p><strong>{{ this }}</strong></p><hr>
-            {{/each}}
-            </td>
-            <td>
-            {{# each exam_score }}
-            <p><strong>{{ this }}</strong></p><hr>
-            {{/each}}
-            </td>
-            <td>
-            {{# each total }}
-            <p><strong>{{ this }}</strong></p><hr>
-            {{/each}}
-            </td>
-            <td>
-            {{# each grade }}
-            <p><strong>{{ this }}</strong></p><hr>
-            {{/each}}
-            </td>
-            <td>
-            {{# each total }}
-            <p><strong>{{ this }}</strong></p><hr>
-            {{/each}}
-            </td>
-            <td>  </td>
-            <td>  </td>
-            <td>  </td>
-          </tr>
-          <tr>
-              <td>  </td>
-              <td><strong>{{ ca_average }}</strong></td>
-              <td><strong>{{ exam_average }}</strong></td>
-              <td><strong>{{ total_average }} %</strong></td>
-              <td>  </td>
-              <td><strong>{{ total_average }} %</strong></td>
-              <td>  </td>
-              <td>  </td>
-              <td>  </td>
-          </tr>
-        </tbody>
-        {{/each}}
-    </table>
+<div class="result container">
+    <div class="row">
+        <div class="col-md-8">
+        	<table class="table table-hover" border="1|0">
+                <thead>
+                  <tr>
+                    <th scope="col">Subjects</th>
+                    <th scope="col">CA</th>
+                    <th scope="col">EXAM</th>
+                    <th scope="col">TOTAL</th>
+                    <th scope="col">GRADE</th>
+                    <th scope="col">1ST</th>
+                    <th scope="col">2ND</th>
+                    <th scope="col">3RD</th>
+                    <th scope="col">SIGN</th>
+                  </tr>
+                </thead>
+                {{# each result}}
+                <tbody>
+                  
+                  <tr>
+                    <td>
+                    {{# each subjects }}
+                    <p class="subjects"><strong>{{ this }}</strong></p><hr>
+                    {{/each}}
+                    </td>
+                    <td>
+                    {{# each ca_score }}
+                    <p><strong>{{ this }}</strong></p><hr>
+                    {{/each}}
+                    </td>
+                    <td>
+                    {{# each exam_score }}
+                    <p><strong>{{ this }}</strong></p><hr>
+                    {{/each}}
+                    </td>
+                    <td>
+                    {{# each total }}
+                    <p><strong>{{ this }}</strong></p><hr>
+                    {{/each}}
+                    </td>
+                    <td>
+                    {{# each grade }}
+                    <p><strong>{{ this }}</strong></p><hr>
+                    {{/each}}
+                    </td>
+                    <td>
+                    {{# each total }}
+                    <p><strong>{{ this }}</strong></p><hr>
+                    {{/each}}
+                    </td>
+                    <td>  </td>
+                    <td>  </td>
+                    <td>  </td>
+                  </tr>
+                  <tr>
+                      <td>  </td>
+                      <td><strong>{{ ca_average }}</strong></td>
+                      <td><strong>{{ exam_average }}</strong></td>
+                      <td><strong>{{ total_average }}</strong></td>
+                      <td>  </td>
+                      <td><strong>{{ total_average }}</strong></td>
+                      <td>  </td>
+                      <td>  </td>
+                      <td>  </td>
+                  </tr>
+                </tbody>
+                {{/each}}
+            </table>
+        </div>\
+        <div class="col-md-4">
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Student Name</th>
+                    <th scope="col">5</th>
+                    <th scope="col">4</th>
+                    <th scope="col">3</th>
+                    <th scope="col">2</th>
+                    <th scope="col">1</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
