@@ -41,6 +41,7 @@
 		{{/result}}
 	</div>
     <div class="row">
+        {{# each result}}
         <div class="col-md-9">
             <table class="table table-hover" border="1|0">
                 <thead>
@@ -56,7 +57,6 @@
                     <th scope="col">SIGN</th>
                   </tr>
                 </thead>
-                {{# each result}}
                 <tbody>
                   
                   <tr>
@@ -106,14 +106,31 @@
                       <td>  </td>
                   </tr>
                 </tbody>
-                {{/each}}
+                
             </table>
+            <div class="row">
+                <div class="col-md-8">
+                    <p>Remarks :<strong> {{ remark }}</strong></p>
+                    <p>Signature: _____________________________</p>
+                    <p>Date: ______________</p>
+                </div>
+                <div class="col-md-4">
+                    <small>KEYNOTE TO GRADING</small>
+                    <p> 00 - 39 = F</p>
+                    <p> 40 - 49 = E</p>
+                    <p> 50 - 59 = D</p>
+                    <p> 60 - 69 = C</p>
+                    <p> 70 - 79 = B</p>
+                    <p> 80 - 89 = B</p>
+                </div>
+            </div>
         </div>
+        {{/each}}
         <div class="col-md-3">
             <table class="table table-hover" border="1|0">
                 <thead>
                   <tr>
-                    <th scope="col" class="subjects" style="font-size: 12px;">Rating Criteria</th>
+                    <th scope="col" style="font-size: 12px;">Rating Criteria</th>
                     <th scope="col">5</th>
                     <th scope="col">4</th>
                     <th scope="col">3</th>
