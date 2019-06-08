@@ -117,8 +117,6 @@
 		let totals = []
 		$('#add_subject').click(function(){
 			let selected_class = $( "#class option:selected" ).text();
-			subjects.push(selected_class)
-			console.log(subjects)
 			$('#add_result').append("<div id='div"+selected_class+"'>" + "<p class='score'>" + selected_class + "</p>" + "<input max='40' id='ca"+selected_class+"' class='score' type='text' placeholder='Enter CA Score' required>" + "<input max='60' id='exam"+selected_class+"' class='score' type='text' placeholder='Enter Exam Score' required>" + "<input id='total"+selected_class+"' class='score' type='text' placeholder='Enter Total' required disabled>" + "<button class='btn btn-primary' id='add_score"+selected_class+"' type='button'>Add Score</button>" + "<button class='btn btn-danger' id='remove_subject"+selected_class+"' type='button'>Remove Subject</button>" + "</div>");
 			let btn_id = 'add_score'+selected_class
 			// Still fixing some bugs here
@@ -130,6 +128,8 @@
 				let exam_score = $('#'+exam_id).val();
 				let total = parseInt(ca_score, 10) + parseInt(exam_score, 10);
 				$('#' + total_id).val(total)
+				subjects.push(selected_class)
+				console.log(subjects)
 				ca_scores.push(ca_score)
 				exam_scores.push(exam_score)
 				totals.push(total)
