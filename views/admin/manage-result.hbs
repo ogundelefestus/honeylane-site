@@ -14,7 +14,7 @@
 		margin: 10px;
 	}
 </style>
-<div class="container bg-info p-5">
+<div class="bg-info p-5">
   <div style="padding: 15px; background-color: white;">
     <a href="/admin/dashboard"> Admin Dashboard</a>
   </div>
@@ -45,7 +45,7 @@
 </div>
 <h2 class="student-details">Enter Results</h2>
 <form id="myForm" action="/admin/add-result" method="POST">
-<div class="container">
+<div class="container-fluid">
 	<div class="row">
 		<div class="col-md-4">
 	          <select required name="year">
@@ -119,7 +119,7 @@
 			let selected_class = $( "#class option:selected" ).text();
 			subjects.push(selected_class)
 			console.log(subjects)
-			$('#add_result').append("<p class='score'>" + selected_class + "</p>" + "<input max='40' id='ca"+selected_class+"' class='score' type='text' placeholder='Enter CA Score'>" + "<input max='60' id='exam"+selected_class+"' class='score' type='text' placeholder='Enter Exam Score'>" + "<input id='total"+selected_class+"' class='score' type='text' placeholder='Enter Total' disabled>" + "<button id='add_score"+selected_class+"' type='button'>Add Score</button>");
+			$('#add_result').append("<div id='div"+selected_class+"'>" + "<p class='score'>" + selected_class + "</p>" + "<input max='40' id='ca"+selected_class+"' class='score' type='text' placeholder='Enter CA Score' required>" + "<input max='60' id='exam"+selected_class+"' class='score' type='text' placeholder='Enter Exam Score' required>" + "<input id='total"+selected_class+"' class='score' type='text' placeholder='Enter Total' required disabled>" + "<button class='btn btn-primary' id='add_score"+selected_class+"' type='button'>Add Score</button>" + "<button class='btn btn-danger' id='remove_subject"+selected_class+"' type='button'>Remove Subject</button>" + "</div>");
 			let btn_id = 'add_score'+selected_class
 			// Still fixing some bugs here
 			$('#' + btn_id).click(function(){
@@ -136,6 +136,23 @@
 				console.log(ca_scores, exam_scores, totals);
 				selected_class = null;
 				$(this).prop("disabled",true);
+			})
+			let subject = selected_class
+			let remove_id = 'remove_subject'+ selected_class
+			$('#' + remove_id).click(function(){
+				console.log(subject)
+				var index = subjects.indexOf(subject);
+				console.log(index)
+				if (index > -1) {
+					console.log(index)
+					subjects.splice(index, 1);
+					ca_scores.splice(index,1);
+					exam_scores.splice(index,1)
+					totals.splice(index,1)
+				}
+				console.log(subjects, ca_scores, exam_scores, totals)
+				$('#div' + subject).remove()
+				alert("Subject has been removed successfully")
 			})
 		})
 		$('#attendance_remarks').click(function(){
